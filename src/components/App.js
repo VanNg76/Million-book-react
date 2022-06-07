@@ -8,7 +8,7 @@ import { Register } from "./auth/Register"
 export const App = () => (
     <>
         <Route render={() => {
-            if (localStorage.getItem("auth_token")) {
+            if (localStorage.getItem("token")) {
                 return <>
                     <Route>
                         <NavBar />

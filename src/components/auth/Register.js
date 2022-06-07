@@ -7,6 +7,8 @@ import './Auth.css'
 export const Register = () => {
   const username = useRef()
   const password = useRef()
+  const firstName = useRef()
+  const lastName = useRef()
   const history = useHistory()
 
   const handleRegister = (e) => {
@@ -14,21 +16,32 @@ export const Register = () => {
 
     const newUser = {
       "username": username.current.value,
-      "password": password.current.value
+      "password": password.current.value,
+      "first_name": firstName.current.value,
+      "last_name": lastName.current.value
     }
 
     registerUser(newUser).then(res => {
       if ("token" in res) {
-        localStorage.setItem("lu_token", res.token)
+        localStorage.setItem("token", res.token)
         history.push("/")
       }
     })
+
   }
 
 return (
   <main>
     <form onSubmit={handleRegister}>
       <h3>Register an account</h3>
+      <fieldset>
+        <label htmlFor="inputFirstName">First Name</label>
+        <input ref={firstName} type="text" name="firstName" placeholder="First Name" required />
+      </fieldset>
+      <fieldset>
+        <label htmlFor="inputLastName">Last Name</label>
+        <input ref={lastName} type="text" name="lastName" placeholder="Last Name" required />
+      </fieldset>
       <fieldset>
         <label htmlFor="inputUsername">Username</label>
         <input ref={username} type="text" name="username" placeholder="Username" required />
