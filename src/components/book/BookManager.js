@@ -42,3 +42,21 @@ export const getBooksPublishedAfterDate = (date) => {
     })
         .then(res => res.json())
 }
+
+export const getBooksBySearchTitle = (searchTitle) => {
+    return fetch(`http://localhost:8000/books?title=${searchTitle}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+        .then(res => res.json())
+}
+
+export const getBooksBySearchAuthorName = (name) => {
+    return fetch(`http://localhost:8000/books?author_name=${name}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+        .then(res => res.json())
+}

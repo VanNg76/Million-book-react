@@ -2,17 +2,21 @@ import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getBooks, getBooksByCategoryId } from "./BookManager"
 import { getBooksPublishedBeforeDate, getBooksPublishedAfterDate } from "./BookManager"
+import { getBooksBySearchTitle, getBooksBySearchAuthorName } from "./BookManager"
 import { getCategories } from "../category/CategoryManager"
 import { getCurrentUser } from "../user/UserManager"
 
 
 export const BookList = () => {
-    const [currentUser, setCurrentUser] = useState()
+    const [ currentUser, setCurrentUser ] = useState()
     const [ books, setBooks ] = useState([])
     const [ categories, setCategories ] = useState([])
     const [ catId, changeCatId ] = useState(0)
-    const [ publishedDate, setPublishedDate] = useState("")
+    const [ publishedDate, setPublishedDate ] = useState("")
     const [ before, setBefore ] = useState(false)
+    const [ searchTitle, setSearchTitle ] = useState("")
+    const [ searchAuthor, setSearchAuthor ] = useState("")
+
 
     const history = useHistory()
 
@@ -43,11 +47,19 @@ export const BookList = () => {
                     .then(books => setBooks(books))
             }   
         }
+        else if (searchTitle) {
+            getBooksBySearchTitle(searchTitle)
+                .then(books => setBooks(books))
+        }
+        else if (searchAuthor) {
+            getBooksBySearchAuthorName(searchAuthor)
+                .then(books => setBooks(books))
+        }
         else {
             getBooks()
                 .then(books => setBooks(books))
         }
-    }, [catId, publishedDate])
+    }, [catId, publishedDate, searchTitle, searchAuthor])
 
     const formatDate = (date) => {
         const dateArray = date.split("-")
@@ -73,6 +85,8 @@ export const BookList = () => {
             <select id="category" className="dropdown" value={catId} onChange={
                 (event) => {
                     setPublishedDate("")
+                    setSearchTitle("")
+                    setSearchAuthor("")
                     changeCatId(parseInt(event.target.value))
                 }
             }>
@@ -86,10 +100,9 @@ export const BookList = () => {
             <br></br>
 
             {/* filter books before or after publication date */}
-            <label className="selectCat">Choose published date: </label>
+            <label className="selectCat">Filter by publication date: </label>
             <select id="publicationDate" className="dropdown" onChange={
                 (event) => {
-                    changeCatId(0)
                     if (event.target.value === "1") {
                         setBefore(true)
                     } else {
@@ -104,10 +117,48 @@ export const BookList = () => {
 
             <input type="date" className="form-control" placeholder="Choose date" value={publishedDate}
                 onChange={(e) => {
+                    changeCatId(0)
+                    setSearchTitle("")
+                    setSearchAuthor("")
                     setPublishedDate(e.target.value)
                 }}
             />
 
+            <button className="resetDate"
+                onClick={() => {
+                    changeCatId(0)
+                    setSearchTitle("")
+                    setSearchAuthor("")
+                    setPublishedDate("")
+                }}
+            >Reset date filter</button>
+            <br></br>
+
+            {/* filter books by search title */}
+            <label className="searchTitle">Enter search text for book title: </label>
+            <input type="text" className="form-control" placeholder="Input text" value={searchTitle}
+                onChange={(e) => {
+                    changeCatId(0)
+                    setPublishedDate("")
+                    setSearchAuthor("")
+                    setSearchTitle(e.target.value)
+                }}
+            />
+            <br></br>
+
+            {/* filter books by search author name */}
+            <label className="searchAuthor">Enter search text for author name: </label>
+            <input type="text" className="form-control" placeholder="Input text" value={searchAuthor}
+                onChange={(e) => {
+                    changeCatId(0)
+                    setPublishedDate("")
+                    setSearchTitle("")
+                    setSearchAuthor(e.target.value)
+                }}
+            />
+            <br></br>
+
+            {/* display books after filter by individual condition */}
             <article className="books">
                 {
                     books.map(book => {
