@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import { getBooks, getBooksByCategoryId } from "./BookManager"
-
+import { getBooksPublishedBeforeDate, getBooksPublishedAfterDate } from "./BookManager"
 import { getCategories } from "../category/CategoryManager"
 import { getCurrentUser } from "../user/UserManager"
 
@@ -11,7 +11,7 @@ export const BookList = () => {
     const [ books, setBooks ] = useState([])
     const [ categories, setCategories ] = useState([])
     const [ catId, changeCatId ] = useState(0)
-    const [ publicationDate, setPublicationDate] = useState("")
+    const [ publishedDate, setPublishedDate] = useState("")
     const [ before, setBefore ] = useState(false)
 
     const history = useHistory()
@@ -33,21 +33,27 @@ export const BookList = () => {
             getBooksByCategoryId(catId)
                 .then(books => setBooks(books))
         }
-        // else if (publicationDate) {
-        //     if (before) {
-        //         getBooksBeforePublicationDate()
-        //             .then(books => setBooks(books))
-        //     }
-        //     else {
-        //         getBooksAfterPublicationDate()
-        //             .then(books => setBooks(books))
-        //     }   
-        // }
+        else if (publishedDate) {
+            if (before) {
+                getBooksPublishedBeforeDate(publishedDate)
+                    .then(books => setBooks(books))
+            }
+            else {
+                getBooksPublishedAfterDate(publishedDate)
+                    .then(books => setBooks(books))
+            }   
+        }
         else {
             getBooks()
                 .then(books => setBooks(books))
         }
-    }, [catId, publicationDate])
+    }, [catId, publishedDate])
+
+    const formatDate = (date) => {
+        const dateArray = date.split("-")
+        const newDate = dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0]
+        return newDate
+    }
 
     return (
         <>
@@ -64,8 +70,9 @@ export const BookList = () => {
 
             {/* filter books by choosing a category */}
             <label className="selectCat">Select Category: </label>
-            <select id="category" className="dropdown" onChange={
+            <select id="category" className="dropdown" value={catId} onChange={
                 (event) => {
+                    setPublishedDate("")
                     changeCatId(parseInt(event.target.value))
                 }
             }>
@@ -79,7 +86,7 @@ export const BookList = () => {
             <br></br>
 
             {/* filter books before or after publication date */}
-            <label className="selectCat">Choose date: </label>
+            <label className="selectCat">Choose published date: </label>
             <select id="publicationDate" className="dropdown" onChange={
                 (event) => {
                     changeCatId(0)
@@ -90,14 +97,14 @@ export const BookList = () => {
                     }
                 }
             }>
-                <option value="0">No filter</option>
+                <option value="0">Choose</option>
                 <option value="1">Before</option>
                 <option value="2">After</option>
             </select>
 
-            <input type="date" className="form-control" placeholder="Choose date"
+            <input type="date" className="form-control" placeholder="Choose date" value={publishedDate}
                 onChange={(e) => {
-                    setPublicationDate(e.target.value)
+                    setPublishedDate(e.target.value)
                 }}
             />
 
@@ -108,6 +115,7 @@ export const BookList = () => {
                             <section key={`book--${book.id}`} className="book">
                                 <img src={book.cover_image_url} alt={book.title} />
                                 <Link className="book__title" to={`/books/${book.id}`}>Title: {book.title}</Link>
+                                <div className="book__publicationDate">Publication date: {formatDate(book.publication_date)}</div>
                                 <div className="book__price">Price: {book.price}</div>
                             </section>
                         )
