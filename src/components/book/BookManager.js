@@ -60,3 +60,35 @@ export const getBooksBySearchAuthorName = (name) => {
     })
         .then(res => res.json())
 }
+
+export const createBook = (newBook) => {
+    return fetch("http://localhost:8000/books", {
+        method: "POST",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newBook)
+    })
+        .then(response => response.json())
+}
+
+export const updateBook = (newBook) => {
+    return fetch(`http://localhost:8000/books/${newBook.id}`, {
+        method: "PUT",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newBook)
+    })
+}
+
+export const deleteBook = (bookId) => {
+    return fetch(`http://localhost:8000/books/${bookId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}

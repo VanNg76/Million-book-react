@@ -126,12 +126,9 @@ export const BookList = () => {
 
             <button className="resetDate"
                 onClick={() => {
-                    changeCatId(0)
-                    setSearchTitle("")
-                    setSearchAuthor("")
                     setPublishedDate("")
                 }}
-            >Reset date filter</button>
+            >No filter</button>
             <br></br>
 
             {/* filter books by search title */}
@@ -164,8 +161,10 @@ export const BookList = () => {
                     books.map(book => {
                         return (
                             <section key={`book--${book.id}`} className="book">
-                                <img src={book.cover_image_url} alt={book.title} />
-                                <Link className="book__title" to={`/books/${book.id}`}>Title: {book.title}</Link>
+                                <Link to={`/books/${book.id}`}>
+                                    <img src={book.cover_image_url} alt={book.title} />
+                                </Link>
+                                <div className="book__title">Title: {book.title}</div>
                                 <div className="book__publicationDate">Publication date: {formatDate(book.publication_date)}</div>
                                 <div className="book__price">Price: {book.price}</div>
                             </section>
