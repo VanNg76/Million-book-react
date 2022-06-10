@@ -35,15 +35,16 @@ export const CategoryList = () => {
             }
             <br></br>
 
-            <ul className="categories">
+            <h2>Categories</h2>
+            <ol className="categories">
                 {
                     categories.map(category => {
                         return (
-                            <li className="category__name">Category name: {category.name}</li>
+                            <li key={`category--${category.id}`} className="category__name">{category.name}</li>
                         )
                     })
                 }
-            </ul>
+            </ol>
 
         </>
     )

@@ -26,6 +26,8 @@ export const NavBar = () => {
           </>
         : null
       }
+      <Link className="navbar__link" to="/orders">My Orders</Link>
+      
       {
         localStorage.getItem("token") !== null ?
           <button onClick={() => {

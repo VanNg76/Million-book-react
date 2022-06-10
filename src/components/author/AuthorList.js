@@ -35,15 +35,16 @@ export const AuthorList = () => {
             }
             <br></br>
 
-            <ul className="authors">
+            <h2>Authors</h2>
+            <ol className="authors">
                 {
                     authors.map(author => {
                         return (
-                            <li key={`author--${author.id}`} className="author__name">Author name: {author.name}</li>
+                            <li key={`author--${author.id}`} className="author__name">{author.name}</li>
                         )
                     })
                 }
-            </ul>
+            </ol>
 
         </>
     )

@@ -7,6 +7,7 @@ import { CreateAuthor } from "./author/CreateAuthor"
 import { AuthorList } from "./author/AuthorList"
 import { CreateCategory } from "./category/CreateCategory"
 import { CategoryList } from "./category/CategoryList"
+import { OrderList } from "./orders/OrderList"
 
 
 export const ApplicationViews = () => {
@@ -35,6 +36,9 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/authors/new">
                 <CreateAuthor />
+            </Route>
+            <Route exact path="/orders">
+                <OrderList />
             </Route>
         </main>
     </>
