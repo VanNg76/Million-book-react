@@ -5,6 +5,7 @@ import { getBooksPublishedBeforeDate, getBooksPublishedAfterDate } from "./BookM
 import { getBooksBySearchTitle, getBooksBySearchAuthorName } from "./BookManager"
 import { getCategories } from "../category/CategoryManager"
 import { getCurrentUser } from "../user/UserManager"
+import "./Book.css"
 
 
 export const BookList = () => {
