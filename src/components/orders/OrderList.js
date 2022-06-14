@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { getOrders } from "./OrderManager"
 import { getCurrentUser } from "../user/UserManager"
@@ -10,7 +10,6 @@ export const OrderList = () => {
     const [ currentUser, setCurrentUser ] = useState()
     const [ orders, setOrders ] = useState([])
     const [ orderbooks, setOrderBooks ] = useState([])
-    const history = useHistory()
     
     useEffect(() => {
         getCurrentUser()
@@ -84,21 +83,8 @@ export const OrderList = () => {
                                         {order.ordered_books?.map(ob => {
                                             return (
                                                 <li key={`ordered_book--${ob.id}`}>
-                                                    Title: {ob.book.title}, 
+                                                    <Link to={`/books/${ob.book.id}`}>Title: {ob.book.title}</Link>, 
                                                     Quantity: {ob.quantity}
-                                                    {/* <button className="btn btn-2 btn-sep icon-edit"
-                                                        onClick={() => {
-                                                            const newOrderBook = {
-                                                                order_id: orders[0].id,
-                                                                quantity: ,
-                                                                book_id: ob.book.id
-                                                            }
-                                                            createOrderBook(newOrderBook)
-                                                                .then(getOrders)
-                                                                .then(orders => setOrders(orders))
-                                                        }}
-                                                    >Change quantity</button> */}
-                                                    
                                                     <button className="btn btn-2 btn-sep icon-edit"
                                                         onClick={() => {
                                                             const findOrderBook = orderbooks?.find(orderbook => {
@@ -115,7 +101,7 @@ export const OrderList = () => {
                                             )
                                         })}
                                     </ol>
-                                    <div>Total order value: {numberFormat(order.total_value)}</div>
+                                    <div>Total Order Value: {numberFormat(order.total_value)}</div>
                                 </div>
                             )
                         })

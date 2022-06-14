@@ -1,6 +1,7 @@
 import { Link, useHistory } from "react-router-dom"
 import React, { useEffect, useState } from "react";
 import { getCurrentUser } from "../user/UserManager"
+import Logo from "./bookstore.png"
 import "./NavBar.css"
 
 
@@ -16,7 +17,9 @@ export const NavBar = () => {
   
   return (
     <nav>
-      <Link to="/">Home</Link>
+      <Link className="navbar__link" to="/">
+        <img src={Logo} alt="logo" />
+      </Link>
       <Link className="navbar__link" to="/books">Books</Link>
       {
         currentUser.is_staff ?
@@ -36,7 +39,7 @@ export const NavBar = () => {
             localStorage.removeItem("token")
             history.push({ pathname: "/" })
           }}>
-            Logout
+            Logout (<span>{currentUser.username}</span>)
           </button>
           :
           <>
