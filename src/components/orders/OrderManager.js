@@ -37,6 +37,15 @@ export const deleteOrder = (orderId) => {
     })
 }
 
+export const getOrderBooks = () => {
+    return fetch("http://localhost:8000/orderbooks", {
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const createOrderBook = (newOrderBook) => {
     return fetch("http://localhost:8000/orderbooks", {
         method: "POST",
@@ -47,4 +56,13 @@ export const createOrderBook = (newOrderBook) => {
         body: JSON.stringify(newOrderBook)
     })
         .then(response => response.json())
+}
+
+export const deleteOrderBook = (orderbookId) => {
+    return fetch(`http://localhost:8000/orderbooks/${orderbookId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
 }

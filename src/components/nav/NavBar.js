@@ -23,6 +23,7 @@ export const NavBar = () => {
           <>
             <Link className="navbar__link" to="/authors">Authors</Link>
             <Link className="navbar__link" to="/categories">Categories</Link>
+            <Link className="navbar__link" to="/inventories">Inventories</Link>
             <Link className="navbar__link" to="/orders">All Orders</Link>
           </>
         : 

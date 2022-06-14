@@ -3,14 +3,14 @@ import { useHistory } from "react-router-dom"
 
 import { getOrders } from "./OrderManager"
 import { getCurrentUser } from "../user/UserManager"
-import { deleteOrder } from "./OrderManager"
+import { deleteOrder, getOrderBooks, deleteOrderBook, createOrderBook } from "./OrderManager"
 
 
 export const OrderList = () => {
     const [ currentUser, setCurrentUser ] = useState()
     const [ orders, setOrders ] = useState([])
+    const [ orderbooks, setOrderBooks ] = useState([])
     const history = useHistory()
-    const [ isChanged, setIsChanged ] = useState(false)
     
     useEffect(() => {
         getCurrentUser()
@@ -21,14 +21,11 @@ export const OrderList = () => {
         if (currentUser) {
             getOrders()
                 .then(orders => setOrders(orders))
+            getOrderBooks()
+                .then(obs => setOrderBooks(obs))
         }
     }, [currentUser])
     
-    useEffect(() => {
-        getOrders()
-            .then(orders, setOrders(orders))
-    }, [isChanged])
-
     const numberFormat = (value) => {
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
@@ -64,6 +61,8 @@ export const OrderList = () => {
                                         <button className="btn btn-2 btn-sep icon-edit"
                                             onClick={() => {
                                                 deleteOrder(order.id)
+                                                    .then(getOrders)
+                                                    .then(orders=> setOrders(orders))
                                             }}
                                         >Delete Order</button>
                                         <br></br><br></br>
@@ -87,17 +86,31 @@ export const OrderList = () => {
                                                 <li key={`ordered_book--${ob.id}`}>
                                                     Title: {ob.book.title}, 
                                                     Quantity: {ob.quantity}
-                                                    <button className="btn btn-2 btn-sep icon-edit"
+                                                    {/* <button className="btn btn-2 btn-sep icon-edit"
                                                         onClick={() => {
-                                                            // history.push({ pathname: `/orderbooks/edit/${book.id}` })
+                                                            const newOrderBook = {
+                                                                order_id: orders[0].id,
+                                                                quantity: ,
+                                                                book_id: ob.book.id
+                                                            }
+                                                            createOrderBook(newOrderBook)
+                                                                .then(getOrders)
+                                                                .then(orders => setOrders(orders))
                                                         }}
-                                                    >Change quantity</button>
+                                                    >Change quantity</button> */}
+                                                    
                                                     <button className="btn btn-2 btn-sep icon-edit"
                                                         onClick={() => {
-                                                            // deleteOrderedBook(book.id, order.id)
-                                                            // history.push("/orders")
+                                                            const findOrderBook = orderbooks?.find(orderbook => {
+                                                                return (orderbook.order_id === orders[0].id && orderbook.book_id === ob.book.id)
+                                                            })
+                                                            
+                                                            deleteOrderBook(findOrderBook.id)
+                                                                .then(getOrders)
+                                                                .then(orders => setOrders(orders))
                                                         }}
                                                     >Delete Item</button>
+
                                                 </li>
                                             )
                                         })}

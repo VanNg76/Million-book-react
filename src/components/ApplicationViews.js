@@ -8,6 +8,8 @@ import { AuthorList } from "./author/AuthorList"
 import { CreateCategory } from "./category/CreateCategory"
 import { CategoryList } from "./category/CategoryList"
 import { OrderList } from "./orders/OrderList"
+import { InventoryList } from "./inventory/InventoryList"
+import { ChangeInventory } from "./inventory/ChangeInventory"
 
 
 export const ApplicationViews = () => {
@@ -36,6 +38,12 @@ export const ApplicationViews = () => {
             </Route>
             <Route exact path="/authors/new">
                 <CreateAuthor />
+            </Route>
+            <Route exact path="/inventories">
+                <InventoryList />
+            </Route>
+            <Route exact path="/inventories/new">
+                <ChangeInventory />
             </Route>
             <Route exact path="/orders">
                 <OrderList />
