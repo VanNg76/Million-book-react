@@ -62,117 +62,125 @@ export const BookList = () => {
         }
     }, [catId, publishedDate, searchTitle, searchAuthor])
 
-    const formatDate = (date) => {
-        const dateArray = date.split("-")
-        const newDate = dateArray[1] + "/" + dateArray[2] + "/" + dateArray[0]
-        return newDate
-    }
 
     return (
         <>
             {
                 currentUser?.is_staff ?
-                    <button className="btn btn-2 btn-sep icon-create"
+                    <button className="button is-dark"
                         onClick={() => {
                             history.push({ pathname: "/books/new" })
                         }}
                     >Add Book</button>
                 : null
             }
-            <br></br>
+            <table className="table mt-4">
+                <tbody>
+                    <tr>
+                        {/* filter books by choosing a category */}
+                        <td>Filter by Category:</td>
+                        <td>
+                            <select id="category" value={catId} onChange={
+                                (event) => {
+                                    setPublishedDate("")
+                                    setSearchTitle("")
+                                    setSearchAuthor("")
+                                    changeCatId(parseInt(event.target.value))
+                                }
+                            }>
+                                <option value="0">All</option>
+                                {
+                                    categories.map(category => {
+                                        return <option key={`categories--${category.id}`} value={category.id}>{category.name}</option>
+                                    })
+                                }
+                            </select>
+                        </td>
+                    </tr>
 
-            {/* filter books by choosing a category */}
-            <label className="selectCat">Select Category: </label>
-            <select id="category" className="dropdown" value={catId} onChange={
-                (event) => {
-                    setPublishedDate("")
-                    setSearchTitle("")
-                    setSearchAuthor("")
-                    changeCatId(parseInt(event.target.value))
-                }
-            }>
-                <option value="0">All</option>
-                {
-                    categories.map(category => {
-                        return <option key={`categories--${category.id}`} value={category.id}>{category.name}</option>
-                    })
-                }
-            </select>
-            <br></br>
+                    <tr>
+                        {/* filter books before or after publication date */}
+                        <td>Filter by Publication Date: </td>
+                        <td>
+                            <select id="publicationDate" onChange={
+                                (event) => {
+                                    if (event.target.value === "1") {
+                                        setBefore(true)
+                                    } else {
+                                        setBefore(false)
+                                    }
+                                }
+                            }>
+                                <option value="0">Option</option>
+                                <option value="1">Before</option>
+                                <option value="2">After</option>
+                            </select>
+                            <input type="date" className="ml-3" placeholder="Choose date" value={publishedDate}
+                                onChange={(e) => {
+                                    changeCatId(0)
+                                    setSearchTitle("")
+                                    setSearchAuthor("")
+                                    setPublishedDate(e.target.value)
+                                }}
+                            />
+                            <button className="ml-3"
+                                onClick={() => {
+                                    setPublishedDate("")
+                                }}
+                            >No filter</button>
+                        </td>
+                    </tr>
 
-            {/* filter books before or after publication date */}
-            <label className="selectCat">Filter by publication date: </label>
-            <select id="publicationDate" className="dropdown" onChange={
-                (event) => {
-                    if (event.target.value === "1") {
-                        setBefore(true)
-                    } else {
-                        setBefore(false)
-                    }
-                }
-            }>
-                <option value="0">Choose</option>
-                <option value="1">Before</option>
-                <option value="2">After</option>
-            </select>
+                    <tr>
+                        {/* Search by title */}
+                        <td>Search by Title: </td>
+                        <td>
+                            <input type="text" placeholder="Input title" value={searchTitle}
+                                onChange={(e) => {
+                                    changeCatId(0)
+                                    setPublishedDate("")
+                                    setSearchAuthor("")
+                                    setSearchTitle(e.target.value)
+                                }}
+                            />
+                        </td>
+                    </tr>
 
-            <input type="date" className="form-control" placeholder="Choose date" value={publishedDate}
-                onChange={(e) => {
-                    changeCatId(0)
-                    setSearchTitle("")
-                    setSearchAuthor("")
-                    setPublishedDate(e.target.value)
-                }}
-            />
-
-            <button className="resetDate"
-                onClick={() => {
-                    setPublishedDate("")
-                }}
-            >No filter</button>
-            <br></br>
-
-            {/* filter books by search title */}
-            <label className="searchTitle">Enter search text for book title: </label>
-            <input type="text" className="form-control" placeholder="Input text" value={searchTitle}
-                onChange={(e) => {
-                    changeCatId(0)
-                    setPublishedDate("")
-                    setSearchAuthor("")
-                    setSearchTitle(e.target.value)
-                }}
-            />
-            <br></br>
-
-            {/* filter books by search author name */}
-            <label className="searchAuthor">Enter search text for author name: </label>
-            <input type="text" className="form-control" placeholder="Input text" value={searchAuthor}
-                onChange={(e) => {
-                    changeCatId(0)
-                    setPublishedDate("")
-                    setSearchTitle("")
-                    setSearchAuthor(e.target.value)
-                }}
-            />
-            <br></br>
+                    <tr>
+                        {/* Search by author name */}
+                        <td>Search by Author Name: </td>
+                        <td>
+                            <input type="text" placeholder="Input name" value={searchAuthor}
+                                onChange={(e) => {
+                                    changeCatId(0)
+                                    setPublishedDate("")
+                                    setSearchTitle("")
+                                    setSearchAuthor(e.target.value)
+                                }}
+                            />
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
 
             {/* display books after filter by individual condition */}
-            <article className="books">
+            <div className="columns is-multiline">
                 {
                     books.map(book => {
                         return (
-                            <section key={`book--${book.id}`} className="book">
-                                <Link to={`/books/${book.id}`}>
-                                    <img src={book.cover_image_url} alt={book.title} />
-                                </Link>
-                                <div className="book__title">Title: {book.title}</div>
-                                <div className="book__publicationDate">Publication date: {formatDate(book.publication_date)}</div>
-                                <div className="book__price">Price: {book.price}</div>
-                            </section>
+                                <div key={`book--${book.id}`} className="column is-one-fifth">
+                                    <Link to={`/books/${book.id}`} className="is-align-content-center">
+                                        <img src={book.cover_image_url} className="box image--booklist" alt={book.title} />
+                                    </Link>
+                                    <div className="has-text-weight-bold has-text-link">{book.title}</div>
+                                    <div className="is-italic has-text-link">by {book.author.name}</div>
+                                    <div className="has-text-weight-bold has-text-warning">${book.price}</div>
+                                </div>
                         )
                     })
                 }
-            </article>
+            </div>
 
         </>
     )

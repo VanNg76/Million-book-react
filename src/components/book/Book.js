@@ -53,8 +53,9 @@ export const Book = () => {
     }
 
     const submitBook = (event) => {
+        event.preventDefault()
         // check if order belong to current user not exists: createOrder then createOrderBook
-        if (orders.length == 0) {
+        if (orders.length === 0) {
             createOrder({})
                 .then(res => {
                     const newOrderBook = {
@@ -80,41 +81,67 @@ export const Book = () => {
     
     return (
         <>
-            {
-                currentUser?.is_staff ?
-                    <>
-                        <button className="btn btn-2 btn-sep icon-edit"
-                            onClick={() => {
-                                history.push({ pathname: `/books/edit/${book.id}` })
-                            }}
-                        >Edit Book</button>
-                        <button className="btn btn-2 btn-sep icon-edit"
-                            onClick={() => {
-                                deleteBook(book.id)
-                                history.push("/books")
-                            }}
-                        >Delete Book </button>
-                    </>
-                :
-                    <>
-                        <label>Order quantity:</label>
-                        <input type="number" name="quantity" placeholder="order quantity"
-                            onChange={handleInputChange} />
-                        <button className="btn btn-2 btn-sep icon-create"
-                            onClick={event => submitBook(event)}
-                        >Add to my order</button>
-                    </>
-            }
-            <br></br>
+            <form className="box">
+                {
+                    currentUser?.is_staff ?
+                        <>
+                            <button className="button is-dark m-2 $"
+                                onClick={() => {
+                                    history.push({ pathname: `/books/edit/${book.id}` })
+                                }}
+                            >Edit Book</button>
+                            <button className="button is-dark m-2"
+                                onClick={() => {
+                                    deleteBook(book.id)
+                                    history.push("/books")
+                                }}
+                            >Delete Book </button>
+                        </>
+                    :
+                        <>
+                            <label>Order quantity:</label>
+                            <input type="number" name="quantity" placeholder="number"
+                                className="input is-primary" onChange={handleInputChange} />
+                            <button className="button is-dark mt-3"
+                                onClick={event => submitBook(event)}
+                            >Add to MY ORDER</button>
+                        </>
+                }
+            </form>
 
-            <section key={`book--${book.id}`} className="book">
-                <img src={book.cover_image_url} alt={book.title} />
-                <div className="book__title">Title: {book.title}</div>
-                <div className="book__introduction">Introduction: {book.introduction}</div>
-                <div className="book__publicationDate">Publication date: {formatDate(book.publication_date)}</div>
-                <div className="book__authorName">Author name: {book.author?.name}</div>
-                <div className="book__price">Price: {book.price}</div>
-            </section>
-        </>
+            <div key={`book--${book.id}`} className="card mt-6 is-flex is-flex-direction-row">
+                <div className="card-image">
+                    <figure className="image--book">
+                        <img src={book.cover_image_url} alt={book.title} />
+                    </figure>
+                </div>
+                {/* <div className="is-flex is-justify-content-center">
+                </div> */}
+                <div className="card-content">
+                    <div className="content">
+                        <div className="tile is-parent p-0 mt-3">
+                            <div className="tile is-child is-2">Title</div>
+                            <div className="tile is-child is-8"><strong>{book.title}</strong></div>
+                        </div>
+                        <div className="tile is-parent p-0">
+                            <div className="tile is-child is-2">Introduction</div>
+                            <div className="tile is-child is-8 has-text-justified">{book.introduction}</div>
+                        </div>
+                        <div className="tile is-parent p-0">
+                            <div className="tile is-child is-2">Publication date</div>
+                            <div className="tile is-child is-8">{formatDate(book.publication_date)}</div>
+                        </div>
+                        <div className="tile is-parent p-0">
+                            <div className="tile is-child is-2">Author name</div>
+                            <div className="tile is-child is-8"><strong>{book.author?.name}</strong></div>
+                        </div>
+                        <div className="tile is-parent p-0">
+                            <div className="tile is-child is-2">Price</div>
+                            <div className="tile is-child is-8"><strong>${book.price}</strong></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>   
     )
 }

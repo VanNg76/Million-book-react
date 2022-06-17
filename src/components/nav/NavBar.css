@@ -1,5 +1,4 @@
-span {
-    color: blue;
-    text-decoration-line: underline;
-    
+.logo-img {
+    height: 3rem;
+    width: 4rem;
 }

@@ -36,22 +36,22 @@ export const Login = () => {
         <button onClick={e => invalidDialog.current.close()}>Close</button>
       </dialog>
       <section>
-        <form onSubmit={handleLogin}>
+        <form className="box" onSubmit={handleLogin}>
           <fieldset>
             <label htmlFor="inputUsername"> Username</label>
-            <input ref={username} type="username" id="username" placeholder="Username" required autoFocus />
+            <input className="ml-3" ref={username} type="username" id="username" placeholder="Username" required autoFocus />
           </fieldset>
           <fieldset>
             <label htmlFor="inputPassword"> Password </label>
-            <input ref={password} type="password" id="password" placeholder="Password" required />
+            <input className="ml-3 mt-2" ref={password} type="password" id="password" placeholder="Password" required />
           </fieldset>
           <fieldset>
-            <button type="submit">Sign In</button>
+            <button className="mt-4" type="submit">Sign In</button>
+          </fieldset>
+          <fieldset className="mt-3">
+            <Link to="/register">Not a member yet?</Link>
           </fieldset>
         </form>
-      </section>
-      <section>
-        <Link to="/register">Not a member yet?</Link>
       </section>
     </main>
   )
