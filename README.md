@@ -25,7 +25,7 @@ git@github.com:VanNg76/Million-book-django.git
 ![image](https://user-images.githubusercontent.com/96600790/161573692-89e33042-06c0-4abb-abbc-e41c1606301b.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573724-64b0bd82-0149-45a8-9908-4c9f73beecf2.png)
 <br>
-<img src="https://blog.knoldus.com/wp-content/uploads/2020/06/python-django.png" width="100px" />
+<img src="https://blog.knoldus.com/wp-content/uploads/2020/06/python-django.png" width="200px" />
 
 ### Instruction for installation
 Navigate to the workspace directory, run following commands from your git:
