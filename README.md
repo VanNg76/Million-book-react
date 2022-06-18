@@ -1,4 +1,4 @@
-#Book-Millions
+# Book-Millions
 This website is used for a Bookstore, both Admin (owner, staff) and Customer.
 
 Features:
@@ -23,7 +23,7 @@ git@github.com:VanNg76/Million-book-django.git
 ![image](https://user-images.githubusercontent.com/96600790/161573659-4c4a0ff7-93c7-4523-9b25-94a43c3dc3ec.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573676-f5bb6a64-efbf-4d07-b06d-6349cd0f27ed.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573692-89e33042-06c0-4abb-abbc-e41c1606301b.png)
-
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAwOlygeOk-SBcrZgIZungVhhqlQdQSsqbNA&usqp=CAU" alt="python" />
 ![image](https://user-images.githubusercontent.com/96600790/161573724-64b0bd82-0149-45a8-9908-4c9f73beecf2.png)
 
 ### Instruction for installation
