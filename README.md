@@ -11,9 +11,9 @@ Features:
   - Only view books has stock
   - Add Book to order, quantity cannot exceed current stock
   - Delete Book from order
-** Inventory has been handle when customers add items to order or delete items from their order.
+### Inventory has been handle when customers add items to order or delete items from their order.
 
-## API resource
+## Server repository
 git@github.com:VanNg76/Million-book-django.git
 
 ### Techonologies used
@@ -24,8 +24,7 @@ git@github.com:VanNg76/Million-book-django.git
 ![image](https://user-images.githubusercontent.com/96600790/161573676-f5bb6a64-efbf-4d07-b06d-6349cd0f27ed.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573692-89e33042-06c0-4abb-abbc-e41c1606301b.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573724-64b0bd82-0149-45a8-9908-4c9f73beecf2.png)
-![image](https://blog.knoldus.com/wp-content/uploads/2020/06/python-django.png)
-
+<img src="https://blog.knoldus.com/wp-content/uploads/2020/06/python-django.png" width="300px" />
 
 ### Instruction for installation
 Navigate to the workspace directory, run following commands from your git:
