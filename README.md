@@ -11,7 +11,7 @@ Features:
   - Only view books has stock
   - Add Book to order, quantity cannot exceed current stock
   - Delete Book from order
-### Inventory has been handle when customers add items to order or delete items from their order.
+### Inventory is handled when customers add items to order or delete items from their order.
 
 ## Server repository
 git@github.com:VanNg76/Million-book-django.git
