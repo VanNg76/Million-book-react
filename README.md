@@ -16,7 +16,7 @@ Features:
 ## Server repository
 git@github.com:VanNg76/Million-book-django.git
 
-### Techonologies used
+## Techonologies used
 ![image](https://user-images.githubusercontent.com/96600790/161573536-e7cebf42-3b6b-475b-b353-7900522dbd3a.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573615-bb407e86-7ab7-4ba6-bd21-212cfdc541d8.png)
 ![image](https://user-images.githubusercontent.com/96600790/161573637-7ba60e06-7503-4400-940d-bb310a86f3aa.png)
