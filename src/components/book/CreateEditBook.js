@@ -57,54 +57,44 @@ export const CreateEditBook = ({edit}) => {
     }
 
     return (
-        <>
-            <fieldset>
-                <div className="form-group">
-                    <label>Book title:</label>
-                    <input name="title" type="text" placeholder="title" value={editBook.title}
-                        onChange={handleControlledInputChange}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Introduction:</label>
-                    <textarea name="introduction" placeholder="introduction" value={editBook.introduction}
-                        onChange={handleControlledInputChange}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Image URL:</label>
-                    <textarea name="cover_image_url" placeholder="image URL" value={editBook.cover_image_url}
-                        onChange={handleControlledInputChange}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Publication date:</label>
-                    <input name="publication_date" type="date" value={editBook.publication_date}
-                        placeholder="mm/dd/yyyy" onChange={handleControlledInputChange}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Price:</label>
-                    <input name="price" type="number" placeholder="price" value={editBook.price}
-                        onChange={handleControlledInputChange}
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label>Select Author:</label>
+        <form className="box">
+            <div className="field">
+                <label>Book title:</label>
+                <input name="title" type="text" placeholder="title" value={editBook.title}
+                    className="input is-primary" onChange={handleControlledInputChange}
+                />
+            </div>
+            <div className="field">
+                <label>Introduction:</label>
+                <textarea name="introduction" placeholder="introduction" value={editBook.introduction}
+                    className="textarea is-primary" onChange={handleControlledInputChange}
+                />
+            </div>
+            <div className="field">
+                <label>Image URL:</label>
+                <textarea name="cover_image_url" placeholder="image URL" value={editBook.cover_image_url}
+                    className="textarea is-primary" onChange={handleControlledInputChange}
+                />
+            </div>
+            <div className="field">
+                <label>Publication date:</label>
+                <input name="publication_date" type="date" value={editBook.publication_date}
+                    className="input is-primary" placeholder="mm/dd/yyyy" onChange={handleControlledInputChange}
+                />
+            </div>
+            <div className="field">
+                <label>Price:</label>
+                <input name="price" type="number" placeholder="$0.00" value={editBook.price}
+                    className="input is-primary" onChange={handleControlledInputChange}
+                />
+            </div>
+            <div className="field">
+                <label>Select Author:</label>
+                <br></br>
+                <div className="select is-primary">
                     <select name="author_id"
-                        value={editBook.author_id}
-                        onChange={handleControlledInputChange}
-                    >
+                    value={editBook.author_id}
+                    onChange={handleControlledInputChange}>
                         {
                             authors.map(author => {
                                 return (
@@ -116,15 +106,13 @@ export const CreateEditBook = ({edit}) => {
                         }
                     </select>
                 </div>
-            </fieldset>
-
-            <div className="submitButton">
-                <button className="submit-button" onClick={(e) => {
-                    submitBook(e)
-                }}>
-                    Submit
-                </button>
             </div>
-        </>
+
+            <button className="button is-dark" onClick={(e) => {
+                submitBook(e)
+            }}>
+                Submit
+            </button>
+        </form>
     )
 }

@@ -1,0 +1,10 @@
+@import 'bulma/css/bulma.css';
+
+.logo-img {
+    height: 3rem;
+    width: 5rem;
+}
+
+.input--login {
+    width: 400px;
+}

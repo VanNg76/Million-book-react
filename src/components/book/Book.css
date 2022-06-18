@@ -1,4 +1,13 @@
-img {
-    height: 200;
-    width: 100px;
+.image--book {
+   max-height: 300px;
+   max-width: 200px;
+}
+
+.image--booklist {
+    height: 200px;
+    width: 150px;
+}
+
+.column {
+    height: 350px;
 }

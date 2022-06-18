@@ -23,29 +23,35 @@ export const CategoryList = () => {
 
    
     return (
-        <>
+        <form className="box">
             {
                 currentUser?.is_staff ?
-                    <button className="btn btn-2 btn-sep icon-create"
+                    <button className="button is-dark"
                         onClick={() => {
                             history.push({ pathname: "/categories/new" })
                         }}
                     >Add Category</button>
                 : null
             }
-            <br></br>
-
-            <h2>Categories</h2>
-            <ol className="categories">
-                {
-                    categories.map(category => {
-                        return (
-                            <li key={`category--${category.id}`} className="category__name">{category.name}</li>
-                        )
-                    })
-                }
-            </ol>
-
-        </>
+            <h2 className="title mt-6 is-4 is-spaced">CATEGORIES</h2>
+            <table className="table is-striped is-hoverable">
+                <thead>
+                    <th className="has-text-centered has-text-link">ID</th>
+                    <th className="has-text-centered has-text-link">Type</th>
+                </thead>
+                <tbody>
+                    {
+                        categories.map(category => {
+                            return (
+                                <tr key={`category--${category.id}`}>
+                                    <td className=" has-text-link">{category.id}</td>
+                                    <td className=" has-text-link">{category.name}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </form>
     )
 }

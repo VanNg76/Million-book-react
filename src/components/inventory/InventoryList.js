@@ -20,33 +20,37 @@ export const InventoryList = () => {
 
    
     return (
-        <>
+        <form className="box">
             {
                 currentUser?.is_staff ?
-                    <button className="btn btn-2 btn-sep icon-create"
+                    <button className="button is-dark"
                         onClick={() => {
                             history.push({ pathname: "/inventories/new" })
                         }}
                     >Add inventory</button>
                 : null
             }
-            <br></br>
-
-            <h2>Inventories</h2>
-            <ol className="inventories">
-                {
-                    inventories.map(inventory => {
-                        return (
-                            <li key={`inventory--${inventory.id}`} className="inventory__name">
-                                Book ID: {inventory.book.id},
-                                Title: {inventory.book.title},
-                                Current inventory: {inventory.quantity}
-                            </li>
-                        )
-                    })
-                }
-            </ol>
-
-        </>
+            <h2 className="title mt-6 is-4 is-spaced">INVENTORIES</h2>
+            <table className="table is-striped is-hoverable">
+                <thead>
+                    <th className="has-text-centered has-text-link">Book ID</th>
+                    <th className="has-text-centered has-text-link">Title</th>
+                    <th className="has-text-centered has-text-link">Current inventory</th>
+                </thead>
+                <tbody>
+                    {
+                        inventories.map(inventory => {
+                            return (
+                                <tr key={`inventory--${inventory.id}`}>
+                                    <td className="has-text-link">{inventory.book.id}</td>
+                                    <td className="has-text-link">{inventory.book.title}</td>
+                                    <td className="has-text-link">{inventory.quantity}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+        </form>
     )
 }

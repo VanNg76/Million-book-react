@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { createAuthor } from "./AuthorManager";
 
@@ -16,30 +16,26 @@ export const CreateAuthor = () => {
     }
 
     return (
-        <>
-            <fieldset>
-                <div className="form-group">
-                    <input required type="text" id="name" className="form-control" placeholder="Author name"
-                        value={form.name}
-                        onChange={
-                            (e) => {
-                                const copy = { ...form }
-                                copy.name = e.target.value
-                                updateForm(copy)
-                            }
+        <form class="box">
+            <div className="field">
+                <input required type="text" id="name" className="input is-primary" placeholder="Author name"
+                    value={form.name}
+                    onChange={
+                        (e) => {
+                            const copy = { ...form }
+                            copy.name = e.target.value
+                            updateForm(copy)
                         }
-                    />
-                </div>
-            </fieldset>
-
-            <div className="submitButton">
-                <button className="submit-button"
-                    onClick={(e) => {
-                        submitAuthor(e)
-                        updateForm({ name: "" })
-                    }}>
-                Add Author</button>
+                    }
+                />
             </div>
-        </>
+
+            <button className="button is-dark"
+                onClick={(e) => {
+                    submitAuthor(e)
+                    updateForm({ name: "" })
+                }}>
+            Add Author</button>
+        </form>
     )
 }

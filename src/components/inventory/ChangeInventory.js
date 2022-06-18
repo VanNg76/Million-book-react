@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { createInventory, getInventoryByBookId } from "./InventoryManager"; 
+import { createInventory } from "./InventoryManager"; 
 import { getBooks } from "../book/BookManager";
 
 
@@ -30,11 +30,11 @@ export const ChangeInventory = () => {
 
 
     return (
-        <>
-            <fieldset>
-                <div className="form-group">
-                    <label>Select a book:</label>
-                    <select name="book_id"
+        <form className="box">
+            <div className="field">
+                <label className="label">Select a book:</label>
+                <div className="select is-primary">
+                    <select name="book_id" 
                         value={form.book_id}
                         onChange={handleInputChange}
                     >
@@ -50,25 +50,21 @@ export const ChangeInventory = () => {
                         }
                     </select>
                 </div>
-            </fieldset>
-
-            <fieldset>
-                <div className="form-group">
-                    <label>Quantity:</label>
-                    <input name="quantity" type="number" placeholder="quantity" value={form.quantity}
-                        onChange={handleInputChange}
-                    />
-                </div>
-            </fieldset>
-
-            <div className="submitButton">
-                <button className="submit-button"
-                    onClick={(e) => {
-                        submitInventory(e)
-                        updateForm({ quantity: 0, book_id: 0 })
-                    }}>
-                Submit</button>
             </div>
-        </>
+
+            <div className="field">
+                <label className="label">Quantity:</label>
+                <input name="quantity" type="number" placeholder="quantity" value={form.quantity}
+                    onChange={handleInputChange} className="input is-primary"
+            />
+            </div>
+
+            <button className="button is-dark"
+                onClick={(e) => {
+                    submitInventory(e)
+                    updateForm({ quantity: 0, book_id: 0 })
+                }}>
+            Submit</button>
+        </form>
     )
 }

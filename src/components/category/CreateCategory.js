@@ -17,30 +17,26 @@ export const CreateCategory = () => {
     }
 
     return (
-        <>
-            <fieldset>
-                <div className="form-group">
-                    <input required type="text" id="name" className="form-control" placeholder="Category name"
-                        value={form.name}
-                        onChange={
-                            (e) => {
-                                const copy = { ...form }
-                                copy.name = e.target.value
-                                updateForm(copy)
-                            }
+        <form className="box">
+            <div className="field">
+                <input required type="text" id="name" className="input is-primary" placeholder="Category name"
+                    value={form.name}
+                    onChange={
+                        (e) => {
+                            const copy = { ...form }
+                            copy.name = e.target.value
+                            updateForm(copy)
                         }
-                    />
-                </div>
-            </fieldset>
-
-            <div className="submitButton">
-                <button className="submit-button"
-                    onClick={(e) => {
-                        submitCategory(e)
-                        updateForm({ name: "" })
-                    }}>
-                Add Category</button>
+                    }
+                />
             </div>
-        </>
+
+            <button className="button is-dark"
+                onClick={(e) => {
+                    submitCategory(e)
+                    updateForm({ name: "" })
+                }}>
+            Add Category</button>
+        </form>
     )
 }

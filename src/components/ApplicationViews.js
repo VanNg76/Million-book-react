@@ -10,11 +10,15 @@ import { CategoryList } from "./category/CategoryList"
 import { OrderList } from "./orders/OrderList"
 import { InventoryList } from "./inventory/InventoryList"
 import { ChangeInventory } from "./inventory/ChangeInventory"
+import { Home } from "./Home"
 
 
 export const ApplicationViews = () => {
     return <>
         <main>
+            <Route exact path="/">
+                <Home />
+            </Route>
             <Route exact path="/books">
                 <BookList />
             </Route>

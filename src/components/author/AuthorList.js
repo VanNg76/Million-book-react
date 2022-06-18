@@ -23,29 +23,33 @@ export const AuthorList = () => {
 
    
     return (
-        <>
+        <form className="box">
             {
                 currentUser?.is_staff ?
-                    <button className="btn btn-2 btn-sep icon-create"
-                        onClick={() => {
-                            history.push({ pathname: "/authors/new" })
-                        }}
-                    >Add Author</button>
+                <button className="button is-dark"
+                onClick={() => {
+                    history.push({ pathname: "/authors/new" })
+                }}
+                >Add Author</button>
                 : null
             }
-            <br></br>
-
-            <h2>Authors</h2>
-            <ol className="authors">
-                {
-                    authors.map(author => {
+            <h2 className="title mt-6 is-4 is-spaced">AUTHORS</h2>
+            <table className="table is-striped is-hoverable">
+                <thead>
+                    <th className="has-text-centered has-text-link">ID</th>
+                    <th className="has-text-centered has-text-link">Name</th>
+                </thead>
+                <tbody>
+                    {authors.map(author => {
                         return (
-                            <li key={`author--${author.id}`} className="author__name">{author.name}</li>
+                            <tr key={`author--${author.id}`}>
+                                <td className=" has-text-link">{author.id}</td>
+                                <td className=" has-text-link">{author.name}</td>
+                            </tr>
                         )
-                    })
-                }
-            </ol>
-
-        </>
+                    })}
+                </tbody>
+            </table>
+        </form>
     )
 }
