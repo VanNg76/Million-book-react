@@ -5,6 +5,7 @@ import { getCurrentUser } from "../user/UserManager";
 import { getBookById, deleteBook } from "./BookManager";
 import { getOrders, createOrder, createOrderBook } from "../orders/OrderManager";
 import { getInventoryByBookId } from "../inventory/InventoryManager";
+import "./Book.css"
 
 
 export const Book = () => {
@@ -81,7 +82,7 @@ export const Book = () => {
     
     return (
         <>
-            <form className="box">
+            <form>
                 {
                     currentUser?.is_staff ?
                         <>
@@ -111,8 +112,8 @@ export const Book = () => {
 
             <div key={`book--${book.id}`} className="card mt-6 is-flex is-flex-direction-row">
                 <div className="card-image">
-                    <figure className="image--book">
-                        <img src={book.cover_image_url} alt={book.title} />
+                    <figure>
+                        <img className="image--book" src={book.cover_image_url} alt={book.title} />
                     </figure>
                 </div>
                 {/* <div className="is-flex is-justify-content-center">

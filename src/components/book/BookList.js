@@ -135,7 +135,7 @@ export const BookList = () => {
                         {/* Search by title */}
                         <td>Search by Title: </td>
                         <td>
-                            <input type="text" placeholder="Input title" value={searchTitle}
+                            <input type="text" placeholder="title" value={searchTitle}
                                 onChange={(e) => {
                                     changeCatId(0)
                                     setPublishedDate("")
@@ -150,7 +150,7 @@ export const BookList = () => {
                         {/* Search by author name */}
                         <td>Search by Author Name: </td>
                         <td>
-                            <input type="text" placeholder="Input name" value={searchAuthor}
+                            <input type="text" placeholder="name" value={searchAuthor}
                                 onChange={(e) => {
                                     changeCatId(0)
                                     setPublishedDate("")

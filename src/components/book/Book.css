@@ -1,6 +1,6 @@
 .image--book {
-    height: 500px;
-    width: 350px;
+   max-height: 300px;
+   max-width: 200px;
 }
 
 .image--booklist {
