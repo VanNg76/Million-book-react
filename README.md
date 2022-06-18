@@ -38,5 +38,4 @@ Navigate to the workspace directory, run following commands from your git:
 - npm start
 
 ### ERD
-![image](https://user-images.githubusercontent.com/96600790/174451880-00925200-b30d-41da-8bc5-ce21c1b8c637.png)
-
+![image](https://user-images.githubusercontent.com/96600790/174451918-303bca7b-4285-461c-8f45-7953ef10e83b.png)
