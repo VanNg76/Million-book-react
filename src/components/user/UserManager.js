@@ -1,5 +1,5 @@
 export const getCurrentUser = () => {
-    return fetch("http://localhost:8000/users/0", {
+    return fetch("https://book-millions.herokuapp.com/users/0", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
