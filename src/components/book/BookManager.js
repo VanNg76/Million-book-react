@@ -1,5 +1,5 @@
 export const getBooks = () => {
-    return fetch("https://book-millions.herokuapp.com/books", {
+    return fetch("http://localhost:8000/books", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -8,7 +8,7 @@ export const getBooks = () => {
 }
 
 export const getBookById = (id) => {
-    return fetch(`https://book-millions.herokuapp.com/books/${id}`, {
+    return fetch(`http://localhost:8000/books/${id}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -17,7 +17,7 @@ export const getBookById = (id) => {
 }
 
 export const getBooksByCategoryId = (catId) => {
-    return fetch(`https://book-millions.herokuapp.com/books?category=${catId}`, {
+    return fetch(`http://localhost:8000/books?category=${catId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -26,7 +26,7 @@ export const getBooksByCategoryId = (catId) => {
 }
 
 export const getBooksPublishedBeforeDate = (date) => {
-    return fetch(`https://book-millions.herokuapp.com/books?published_date=${date}&before=true`, {
+    return fetch(`http://localhost:8000/books?published_date=${date}&before=true`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -35,7 +35,7 @@ export const getBooksPublishedBeforeDate = (date) => {
 }
 
 export const getBooksPublishedAfterDate = (date) => {
-    return fetch(`https://book-millions.herokuapp.com/books?published_date=${date}&before=false`, {
+    return fetch(`http://localhost:8000/books?published_date=${date}&before=false`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -44,7 +44,7 @@ export const getBooksPublishedAfterDate = (date) => {
 }
 
 export const getBooksBySearchTitle = (searchTitle) => {
-    return fetch(`https://book-millions.herokuapp.com/books?title=${searchTitle}`, {
+    return fetch(`http://localhost:8000/books?title=${searchTitle}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -53,7 +53,7 @@ export const getBooksBySearchTitle = (searchTitle) => {
 }
 
 export const getBooksBySearchAuthorName = (name) => {
-    return fetch(`https://book-millions.herokuapp.com/books?author_name=${name}`, {
+    return fetch(`http://localhost:8000/books?author_name=${name}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -62,7 +62,7 @@ export const getBooksBySearchAuthorName = (name) => {
 }
 
 export const createBook = (newBook) => {
-    return fetch("https://book-millions.herokuapp.com/books", {
+    return fetch("http://localhost:8000/books", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
@@ -74,7 +74,7 @@ export const createBook = (newBook) => {
 }
 
 export const updateBook = (newBook) => {
-    return fetch(`https://book-millions.herokuapp.com/books/${newBook.id}`, {
+    return fetch(`http://localhost:8000/books/${newBook.id}`, {
         method: "PUT",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
@@ -85,7 +85,7 @@ export const updateBook = (newBook) => {
 }
 
 export const deleteBook = (bookId) => {
-    return fetch(`https://book-millions.herokuapp.com/books/${bookId}`, {
+    return fetch(`http://localhost:8000/books/${bookId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`

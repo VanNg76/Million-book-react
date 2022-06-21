@@ -1,5 +1,5 @@
 export const registerUser = (user) => {
-  return fetch("https://book-millions.herokuapp.com/register", {
+  return fetch("http://localhost:8000/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ export const registerUser = (user) => {
 }
 
 export const loginUser = (user) => {
-  return fetch("https://book-millions.herokuapp.com/login", {
+  return fetch("http://localhost:8000/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
