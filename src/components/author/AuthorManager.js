@@ -1,5 +1,5 @@
 export const getAuthors = () => {
-    return fetch("http://localhost:8000/authors", {
+    return fetch("https://book-millions.herokuapp.com/authors", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -8,7 +8,7 @@ export const getAuthors = () => {
 }
 
 export const createAuthor = (newAuthor) => {
-    return fetch("http://localhost:8000/authors", {
+    return fetch("https://book-millions.herokuapp.com/authors", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
@@ -20,7 +20,7 @@ export const createAuthor = (newAuthor) => {
 }
 
 export const deleteAuthor = (authorId) => {
-    return fetch(`http://localhost:8000/authors/${authorId}`, {
+    return fetch(`https://book-millions.herokuapp.com/authors/${authorId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
