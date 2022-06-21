@@ -1,5 +1,5 @@
 export const getOrders = () => {
-    return fetch("https://book-millions.herokuapp.com/orders", {
+    return fetch("http://localhost:8000/orders", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -8,7 +8,7 @@ export const getOrders = () => {
 }
 
 export const getOrderById = (orderId) => {
-    return fetch(`https://book-millions.herokuapp.com/orders/${orderId}`, {
+    return fetch(`http://localhost:8000/orders/${orderId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -17,7 +17,7 @@ export const getOrderById = (orderId) => {
 }
 
 export const createOrder = (newOrder) => {
-    return fetch("https://book-millions.herokuapp.com/orders", {
+    return fetch("http://localhost:8000/orders", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
@@ -29,7 +29,7 @@ export const createOrder = (newOrder) => {
 }
 
 export const deleteOrder = (orderId) => {
-    return fetch(`https://book-millions.herokuapp.com/orders/${orderId}`, {
+    return fetch(`http://localhost:8000/orders/${orderId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
@@ -38,7 +38,7 @@ export const deleteOrder = (orderId) => {
 }
 
 export const getOrderBooks = () => {
-    return fetch("https://book-millions.herokuapp.com/orderbooks", {
+    return fetch("http://localhost:8000/orderbooks", {
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -47,7 +47,7 @@ export const getOrderBooks = () => {
 }
 
 export const createOrderBook = (newOrderBook) => {
-    return fetch("https://book-millions.herokuapp.com/orderbooks", {
+    return fetch("http://localhost:8000/orderbooks", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
@@ -59,7 +59,7 @@ export const createOrderBook = (newOrderBook) => {
 }
 
 export const deleteOrderBook = (orderbookId) => {
-    return fetch(`https://book-millions.herokuapp.com/orderbooks/${orderbookId}`, {
+    return fetch(`http://localhost:8000/orderbooks/${orderbookId}`, {
         method: "DELETE",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`

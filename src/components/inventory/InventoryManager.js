@@ -1,5 +1,5 @@
 export const getInventories = () => {
-    return fetch(`https://book-millions.herokuapp.com/inventories`, {
+    return fetch(`http://localhost:8000/inventories`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -8,7 +8,7 @@ export const getInventories = () => {
 }
 
 export const getInventoryByBookId = (bookId) => {
-    return fetch(`https://book-millions.herokuapp.com/inventories?book=${bookId}`, {
+    return fetch(`http://localhost:8000/inventories?book=${bookId}`, {
         headers: {
             "Authorization": `Token ${localStorage.getItem("token")}`
         }
@@ -17,7 +17,7 @@ export const getInventoryByBookId = (bookId) => {
 }
 
 export const createInventory = (newInventory) => {
-    return fetch("https://book-millions.herokuapp.com/inventories", {
+    return fetch("http://localhost:8000/inventories", {
         method: "POST",
         headers:{
             "Authorization": `Token ${localStorage.getItem("token")}`,
