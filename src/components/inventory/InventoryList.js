@@ -20,7 +20,7 @@ export const InventoryList = () => {
 
    
     return (
-        <form className="box">
+        <div className="box">
             {
                 currentUser?.is_staff ?
                     <button className="button is-dark"
@@ -51,6 +51,6 @@ export const InventoryList = () => {
                     }
                 </tbody>
             </table>
-        </form>
+        </div>
     )
 }

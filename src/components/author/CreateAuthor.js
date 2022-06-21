@@ -16,7 +16,7 @@ export const CreateAuthor = () => {
     }
 
     return (
-        <form class="box">
+        <form className="box">
             <div className="field">
                 <input required type="text" id="name" className="input is-primary" placeholder="Author name"
                     value={form.name}
