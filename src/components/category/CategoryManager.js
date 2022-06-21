@@ -18,3 +18,12 @@ export const createCategory = (newCategory) => {
     })
         .then(response => response.json())
 }
+
+export const deleteCategory = (categoryId) => {
+    return fetch(`https://book-millions.herokuapp.com/categories/${categoryId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}

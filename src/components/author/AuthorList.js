@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
-import { getAuthors } from "./AuthorManager"
+import { deleteAuthor, getAuthors } from "./AuthorManager"
 import { getCurrentUser } from "../user/UserManager"
 
 
@@ -23,33 +23,52 @@ export const AuthorList = () => {
 
    
     return (
-        <form className="box">
+        <div>
             {
                 currentUser?.is_staff ?
-                <button className="button is-dark"
-                onClick={() => {
-                    history.push({ pathname: "/authors/new" })
-                }}
-                >Add Author</button>
+                    <button className="button is-dark mt-4"
+                    onClick={() => {
+                        history.push({ pathname: "/authors/new" })
+                    }}
+                    >Add Author</button>
+                    
+                    
                 : null
             }
-            <h2 className="title mt-6 is-4 is-spaced">AUTHORS</h2>
-            <table className="table is-striped is-hoverable">
-                <thead>
-                    <th className="has-text-centered has-text-link">ID</th>
-                    <th className="has-text-centered has-text-link">Name</th>
-                </thead>
-                <tbody>
-                    {authors.map(author => {
-                        return (
-                            <tr key={`author--${author.id}`}>
-                                <td className=" has-text-link">{author.id}</td>
-                                <td className=" has-text-link">{author.name}</td>
-                            </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-        </form>
+            <div>
+                <h2 className="title mt-4 is-4 is-spaced">AUTHORS</h2>
+                <table className="table is-striped is-hoverable">
+                    <thead>
+                        <th className="has-text-centered has-text-link">ID</th>
+                        <th className="has-text-centered has-text-link">Name</th>
+                        {
+                            currentUser?.is_staff ? <th className="has-text-centered has-text-link">Action</th> : null
+                        }
+                    </thead>
+                    <tbody>
+                        {authors.map(author => {
+                            return (
+                                <tr key={`author--${author.id}`}>
+                                    <td className=" has-text-link">{author.id}</td>
+                                    <td className=" has-text-link">{author.name}</td>
+                                    {
+                                        currentUser?.is_staff ? 
+                                            <td className="has-text-link">
+                                                <button className="button is-dark"
+                                                    onClick={() => {
+                                                        deleteAuthor(author.id)
+                                                            .then(getAuthors)
+                                                            .then(setAuthors)
+                                                    }}
+                                                >Delete</button>
+                                            </td> : null
+                                    }
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     )
 }

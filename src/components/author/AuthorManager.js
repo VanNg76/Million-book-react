@@ -19,3 +19,11 @@ export const createAuthor = (newAuthor) => {
         .then(response => response.json())
 }
 
+export const deleteAuthor = (authorId) => {
+    return fetch(`https://book-millions.herokuapp.com/authors/${authorId}`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("token")}`
+        }
+    })
+}

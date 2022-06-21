@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 
-import { getCategories } from "./CategoryManager"
+import { getCategories, deleteCategory } from "./CategoryManager"
 import { getCurrentUser } from "../user/UserManager"
 
 
@@ -23,7 +23,7 @@ export const CategoryList = () => {
 
    
     return (
-        <form className="box">
+        <>
             {
                 currentUser?.is_staff ?
                     <button className="button is-dark"
@@ -38,6 +38,9 @@ export const CategoryList = () => {
                 <thead>
                     <th className="has-text-centered has-text-link">ID</th>
                     <th className="has-text-centered has-text-link">Type</th>
+                    {
+                        currentUser?.is_staff ? <th className="has-text-centered has-text-link">Action</th> : null
+                    }
                 </thead>
                 <tbody>
                     {
@@ -46,12 +49,25 @@ export const CategoryList = () => {
                                 <tr key={`category--${category.id}`}>
                                     <td className=" has-text-link">{category.id}</td>
                                     <td className=" has-text-link">{category.name}</td>
+                                    {
+                                        currentUser?.is_staff ?
+                                            <td className="has-text-link">
+                                                <button className="button is-dark"
+                                                    onClick={() => {
+                                                        deleteCategory(category.id)
+                                                            .then(getCategories)
+                                                            .then(setCategories)
+                                                    }}
+                                                >Delete</button>
+                                            </td>
+                                        : null
+                                    }
                                 </tr>
                             )
                         })
                     }
                 </tbody>
             </table>
-        </form>
+        </>
     )
 }
