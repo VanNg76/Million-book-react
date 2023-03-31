@@ -32,6 +32,7 @@ Navigate to the workspace directory, run following commands from your git:
 - git clone git@github.com:VanNg76/Million-book-react.git
 - git clone git@github.com:VanNg76/Million-book-django.git
 - cd Million-book-django
+- pipenv shell
 - python3 manage.py runserver
 - cd ..
 - cd Million-book-react
